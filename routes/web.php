@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/','TestController@index');
+
+Route::get('/admin/products','ProductController@index');//listado
+Route::get('/admin/products/create','ProductController@create');//crear productos
+Route::post('/admin/products','ProductController@store');//guardar productos
+
+
 
 Auth::routes();
 
