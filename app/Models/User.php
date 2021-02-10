@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Cart;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'admin'
     ];
 
     /**
@@ -41,4 +42,39 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function command()
+    {
+        return $this->hasMany(Command::class);
+    }
+
+    public function boards()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function savings()
+    {
+        return $this->hasMany(Savings::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    // cart_id
+    public function getCartAttribute()
+    {
+        $cart = $this->carts()->where('status', 'Active')->first();
+        if ($cart)
+            return $cart;
+
+        else {
+            $cart = new Cart();
+            $cart->status = 'Active';
+            $cart->user_id = $this->id;
+            $cart->save();
+            return $cart;
+        }
+    }
 }

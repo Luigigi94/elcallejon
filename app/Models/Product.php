@@ -9,21 +9,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
-//    use HasFactory;
-//
-//    protected $fillable = [
-//        'name',
-//        'description',
-//        'long_description',
-//        'price',
-//        'category_id',
-//    ];
-//
-//    protected $casts = [
-//        'created_at' => 'datetime',
-//        'updated_at' => 'datetime'
-//    ];
-    public function category(): belongsTo
+    use HasFactory;
+
+    protected $table = 'products';
+
+    protected $fillable = [
+        'id',
+        'name',
+        'description',
+        'long_description',
+        'price',
+        'category_id',
+    ];
+
+    protected $casts=[
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
@@ -31,5 +34,19 @@ class Product extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function getFeaturedImageUrlAttribute()
+    {
+        $featuredImage = $this->images()->where('featured',true)->first();
+        if (!$featuredImage)
+        {
+            $featuredImage = $this->images()->first();
+        }
+
+        if ($featuredImage){
+            return $featuredImage->url;
+        }
+        return '/img/products/noimage.jpg';
     }
 }

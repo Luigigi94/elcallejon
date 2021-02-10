@@ -1,123 +1,110 @@
 @extends('layouts.app')
-@section('body-class','landing-page sidebar-collapse')
-@section('title','Listado de Prodctos')
+@section('body-class','pricing')
+@section('title',config('app.name').'- Listado de Productos')
 @section('content')
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/profile_city.jpg')}}')">
-
-    </div>
-    <div class="main main-raised">
-        <div class="container">
-            <div class="section text-center">
-                <h2 class="title">Listado de Productos Disponibles</h2>
-                <div class="team">
-                    <div class="row">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th class="text-center">#</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Categoria</th>
-                                <th class="text-right">Precio</th>
-                                <th class="text-right">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>Andrew Mike</td>
-                                <td>Develop</td>
-                                <td>2013</td>
-                                <td class="text-right">&euro; 99,225</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" class="btn btn-info">
-                                        <i class="material-icons">person</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-success">
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-danger">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>John Doe</td>
-                                <td>Design</td>
-                                <td>2012</td>
-                                <td class="text-right">&euro; 89,241</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                                        <i class="material-icons">person</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>Alex Mike</td>
-                                <td>Design</td>
-                                <td>2010</td>
-                                <td class="text-right">&euro; 92,144</td>
-                                <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" class="btn btn-info btn-simple">
-                                        <i class="material-icons">person</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+        <!--el estilo chidoliro-->
+        <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{asset('/img/bg2.jpg')}}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="title">Administración de los Productos</h1>
+                        <h4>Aqui puedes ver, editar y modificar lo relacionado a los productos</h4>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="footer footer-default">
-        <div class="container">
-            <nav class="float-left">
-                <ul>
-                    <li>
-                        <a href="https://www.creative-tim.com/">
-                            Creative Tim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/presentation">
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/blog">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/license">
-                            Licenses
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright float-right">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+        <div class="main main-raised">
+            <div class="container">
+                <div class="pricing-2">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <ul class="nav nav-pills nav-pills-rose" role="tablist" style="visibility: hidden">
+                                <li class="active">
+                                    <a href="#dashboard-1" role="tab" data-toggle="tab">
+                                        Monthly
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#schedule-1" role="tab" data-toggle="tab">
+                                        Yearly
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach($images as $product)
+{{--                            @dd($product)--}}
+                            @if(($product->idprod)%2 )
+                                <div class="col-md-6">
+                                    <div class="card card-pricing card-plain flex-fill">
+                                        <div class="card-content">
+                                            <h6 class="category text-info">{{ $product->idprod }}</h6>
+                                            <h1 class="card-title">{{$product->prodname}}</h1>
+                                            <ul>
+                                                <li><b>{{ $product->descpro }}</b></li>
+                                                <li><b>{{ $product->priceprod }}</b></li>
+
+                                                <li><b>{{ $product->catename }}</b></li>
+                                                <li><b><a href="{{url('/admin/products/'.$product->idprod.'/images')}}">Editar imagen de presentacion</a></b></li>
+                                            </ul>
+                                            <div class="row">
+                                                <div class="col-md-3 col-md-offset-2">
+                                                    <a href='{{ url('/admin/products/'.$product->idprod.'/edit') }}' class="btn btn-rose btn-raised btn-round">
+                                                        Editar Producto
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-3 col-md-offset-1">
+                                                    <form method="post" action="{{ url('admin/products/'.$product->idprod) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button class="btn btn-rose btn-raised btn-round" type="submit">
+                                                            Eiminar Prouducto
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-6">
+                                    <div class="card card-pricing card-plain flex-fill">
+                                        <div class="card-content content-rose">
+                                            <h6 class="category text-info">{{ $product->idprod }}</h6>
+                                            <h1 class="card-title">{{$product->prodname}}</h1>
+                                            <ul>
+                                                <li><b>{{ $product->descpro }}</b></li>
+                                                <li><b>{{ $product->priceprod }}</b></li>
+                                                <li><b>{{ $product->catename }}</b></li>
+                                                <li><b><a href="{{url('/admin/products/'.$product->idprod.'/images')}}">Editar imagen de presentacion</a></b></li>
+                                            </ul>
+                                            <div class="row">
+                                                <div class="col-md-3 col-md-offset-2">
+                                                    <a href='{{ url('/admin/products/'.$product->idprod.'/edit') }}' class="btn btn-white btn-raised btn-round">
+                                                        Editar Producto
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-3 col-md-offset-1">
+                                                    <form method="post" action="{{ url('admin/products/'.$product->idprod) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button class="btn btn-white btn-raised btn-round" type="submit">
+                                                            Eiminar Producto
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    {{$products->links()}}
+                </div>
             </div>
         </div>
-    </footer>
+@include('includes.footer')
 @endsection
 

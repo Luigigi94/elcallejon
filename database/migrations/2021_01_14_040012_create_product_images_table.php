@@ -19,8 +19,8 @@ class CreateProductImagesTable extends Migration
             $table->boolean('featured')->default(false);
             $table->timestamps();
 
-            $table->integer('products_id')->nullable()->unsigned();
-            $table->foreign('products_id')->references('id')->on('products');
+            $table->integer('product_id')->nullable()->unsigned();
+//            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

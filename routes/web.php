@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +15,63 @@ use App\Http\Controllers\TestController;
 
 Route::get('/','TestController@index');
 
-Route::get('/admin/products','ProductController@index');//listado
-Route::get('/admin/products/create','ProductController@create');//crear productos
-Route::post('/admin/products','ProductController@store');//guardar productos
+
+Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(function () {
+    //Productos
+    Route::get('/products', 'ProductController@index')->name('index');//listado
+    Route::get('/products/create','ProductController@create');//crear productos
+    Route::post('/products/','ProductController@store');//guardar productos
+    Route::get('/products/{id}/edit','ProductController@edit');//edit productos
+    Route::post('/products/{id}/edit','ProductController@update');//edit productos
+    Route::delete('/products/{id}','ProductController@destroy');//form eliminar
+    //Usuarios
+    Route::get('/users','UserController@index')->name('index');
+    Route::get('/users/create','UserController@create')->name('create');
+    Route::post('users','UserController@store')->name('save');
+    Route::get('/users/{id}/edit','UserController@edit');//edit productos
+    Route::post('/users/{id}/edit','UserController@update');//edit productos
+    Route::delete('/users/{id}','UserController@destroy');//form eliminar
+    //Mesas
+    Route::get('/boards','BoardController@index')->name('index');
+    Route::get('/boards/create','BoardController@create');
+    Route::post('/boards','BoardController@store');
+    Route::get('/boards/{id}/edit','BoardController@edit');
+    Route::post('/boards/{id}/edit','BoardController@update');
+    Route::delete('/boards/{id}','BoardController@destroy');
+
+    //Ahorros
+    Route::get('/savings','SavingsController@index')->name('index');
+    Route::get('/savings/create','SavingsController@create');
+    Route::post('/savings','savingsController@store');
+    Route::get('/savings/{id}/edit','SavingsController@edit');
+    Route::post('/savings/{id}/edit','SavingsController@update');
+    Route::delete('/savings/{id}','SavingsController@destroy');
+
+    //Caja registradora
+    Route::get('/tills','TillController@index')->name('index');
+    Route::get('/tills/create','TillController@create');
+    Route::post('/tills','TillController@store');
+    Route::get('/tills/{id}/edit','TillController@edit');
+    Route::post('/tills/{id}/edit','TillController@update');
+    Route::delete('/tills/{id}','TillController@destroy');
+
+//    imagenes
+    Route::get('/products/{id}/images','ImagesController@index');
+    Route::post('/products/{id}/images','ImagesController@store');
+    Route::delete('/products/{id}/images','ImagesController@destroy');
+    Route::get('/products/{id}/images/select/{images}','ImagesController@select');
+
+
+
+
+});
 
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/products/{id}','ProductController@show');
+Route::post('/cart','CartDetailController@store');
+

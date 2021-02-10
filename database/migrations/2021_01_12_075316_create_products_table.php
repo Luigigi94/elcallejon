@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('description');
             $table->text('long_description')->nullable();
@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
 
 //            foreign key
             $table->integer('category_id')->nullable()->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
 
             $table->timestamps();
