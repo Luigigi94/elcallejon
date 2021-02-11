@@ -5,6 +5,19 @@
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('/img/examples/city.jpg') }}');"></div>
 
     <div class="container">
+        @if(session('notification'))
+            <div class="alert alert-success">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">check</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Success Alert: </b>{{ session('notification') }}
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
                 <div class="profile">

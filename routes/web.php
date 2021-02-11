@@ -74,4 +74,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/products/{id}','ProductController@show');
 Route::post('/cart','CartDetailController@store');
+Route::delete('/cart','CartDetailController@destroy');
+Route::post('/order','CartController@update');
+
 
