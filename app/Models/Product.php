@@ -49,4 +49,12 @@ class Product extends Model
         }
         return '/img/products/noimage.jpg';
     }
+
+    public function getCategoryNameAttribute()
+    {
+        if ($this->category)
+            return $this->category->name;
+
+        return 'General';
+    }
 }

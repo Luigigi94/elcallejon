@@ -23,15 +23,26 @@
                     {{csrf_field()}}
 
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">Nombre</label>
                                 <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}">
                             </div></div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">Precio del Producto</label>
                                 <input type="number" class="form-control" name="price" value="{{ old('price',$product->price) }}" step=".01">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+{{--                            @dd($category)--}}
+                            <div class="form-group bmd-form-group">
+                                <select class="selectpicker" data-style="btn btn-primary btn-round" title="Categorias" name="category_id">
+                                    <option disabled selected>Elige Categoria</option>
+                                    @foreach($category as $categor)
+                                        <option value="{{ $categor->id }}" name='category_id'>{{ $categor->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

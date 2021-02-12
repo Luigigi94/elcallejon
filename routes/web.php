@@ -21,9 +21,18 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
     Route::get('/products', 'ProductController@index')->name('index');//listado
     Route::get('/products/create','ProductController@create');//crear productos
     Route::post('/products/','ProductController@store');//guardar productos
-    Route::get('/products/{id}/edit','ProductController@edit');//edit productos
-    Route::post('/products/{id}/edit','ProductController@update');//edit productos
-    Route::delete('/products/{id}','ProductController@destroy');//form eliminar
+    Route::get('/products/{product}/edit','ProductController@edit');//edit productos
+    Route::post('/products/{product}/edit','ProductController@update');//edit productos
+    Route::delete('/products/{product}','ProductController@destroy');//form eliminar
+
+    //Categorias
+    Route::get('/categories', 'CategoryController@index')->name('index');//listado
+    Route::get('/categories/create','CategoryController@create');//crear productos
+    Route::post('/categories/','CategoryController@store');//guardar productos
+    Route::get('/categories/{category}/edit','CategoryController@edit');//edit productos
+    Route::post('/categories/{category}/edit','CategoryController@update');//edit productos
+    Route::delete('/categories/{category}','CategoryController@destroy');//form eliminar
+
     //Usuarios
     Route::get('/users','UserController@index')->name('index');
     Route::get('/users/create','UserController@create')->name('create');

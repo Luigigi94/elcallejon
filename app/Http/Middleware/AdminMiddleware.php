@@ -19,8 +19,8 @@ class AdminMiddleware
         if (!auth()->check()){
             return redirect('/login');
         }
-        if ((auth()->user()->admin) == 2){
-            return redirect('http://localhost:8000/products/2');
+        if (!auth()->user()){
+            return redirect('/');
         }
         return $next($request);
 

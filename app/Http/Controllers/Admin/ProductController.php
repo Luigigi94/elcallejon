@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,27 +13,16 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(6);
-
-//        $data =\DB::table('organizador')
-//            ->join('unidades', 'organizador.unidad', '=', 'unidades.id')
-//            ->select('unidades.unidad', 'organizador.columnaElegida')
-//            ->get();
-//        SELECT 'products.id AS idprod', 'products.name AS prodname', 'products.description AS descpro', 'products.price AS priceprod', 'products.category_id AS idforanea', 'categories.name AS catename'
-//        FROM categories
-//        INNER JOIN products ON products.category_id = categories.id
-        $images = DB::table('categories AS c')
-            ->join('products AS p', 'p.category_id', '=', 'c.id')
-            ->select('p.id AS idprod', 'p.name AS prodname', 'p.description AS descpro', 'p.price AS priceprod', 'p.category_id AS idforanea', 'c.name AS catename')
-            ->orderBy('idprod')
-            ->paginate(6);
-
-//        @dd($images);
-        return view('admin.products.index')->with(compact('products','images'));
+        return view('admin.products.index')->with(compact('products'));
     }
 
     public function create()
     {
-        return view('admin.products.create'); // ver el formulario de registro
+        $products = Product::all();
+        $categories = Category::all();
+//        @dd($products->products->id);
+        return view('admin.products.create')->with(compact('products','categories')); // ver el formulario de registro
+
     }
 
     public function store(Request $request)
@@ -57,26 +47,24 @@ class ProductController extends Controller
         ];
 
         $this->validate($request,$rules,$messages);
-        //registrar el producto en la db
-//        dd($request->all());
         $product = new Product();
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description');
         $product->long_description = $request->input('long_description');
+        $product->category_id = $request->input('category_id');
         $product->save();
 
         return redirect('/admin/products');
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::find($id);
-//        dd($product);
-        return view('admin.products.edit')->with(compact('product'));
+        $category = Category::all();
+        return view('admin.products.edit')->with(compact('product','category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         $messages = [
             'name.required' => 'Nombre Requerido',
@@ -98,21 +86,18 @@ class ProductController extends Controller
         ];
 
         $this->validate($request,$rules,$messages);
-        //registrar el producto en la db
-//        dd($request->all());
-        $product = Product::find($id);
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description');
         $product->long_description = $request->input('long_description');
+        $product->category_id = $request->input('category_id');
         $product->save();
 
         return redirect('/admin/products');
     }
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::find($id);
         $product->delete();
         return back();
     }
