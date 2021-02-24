@@ -31,6 +31,11 @@
                     </a>
                     <ul class="dropdown-menu dropdown-with-icons">
                         <li>
+                            <a href="{{url('/admin/categories')}}">
+                                <i class="material-icons">attach_money</i> Listado de Categorias
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{url('/admin/products')}}">
                                 <i class="material-icons">attach_money</i> Listado de Productos
                             </a>

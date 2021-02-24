@@ -26,6 +26,8 @@
     </style>
 @endsection
 @section('content')
+{{--    @dd($products->count() > 9)--}}
+
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('/img/bg8.jpg')}}');">
         <div class="container">
             <div class="row">
@@ -113,7 +115,9 @@
                         @endforeach
                     </div>
                     <div class="text-center">
+                        @if($products->count() > 9)
                         {{ $products->links() }}
+                        @endif
                     </div>
                 </div>
             </div>

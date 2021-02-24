@@ -82,6 +82,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/products/{id}','ProductController@show');
+Route::get('/categories/{categor}','CategoryController@show');
 Route::post('/cart','CartDetailController@store');
 Route::delete('/cart','CartDetailController@destroy');
 Route::post('/order','CartController@update');

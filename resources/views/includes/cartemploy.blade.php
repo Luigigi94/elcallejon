@@ -52,7 +52,8 @@
                                     <div class="tab-pane active" id="dashboard-2">
                                         <div class="table-full-width">
                                             {{--                                                        @dd(auth()->user()->cart)--}}
-                                            @if(empty(auth()->user()->cart->details))
+{{--                                        @dd()--}}
+                                        @if(auth()->user()->cart->details->count() < 1)
                                                 <div id="typography" class="cd-section">
                                                     <div class="tim-typo">
                                                         <h2 class="title">Agrega algun producto a tu carrito</h2>
@@ -114,15 +115,16 @@
                                                         @endforeach
                                                         </tbody>
                                                     </table>
-
-                                                    <div class="text-right">
-                                                        <form action=" {{ url('/order') }}" method="post">
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-primary btn-round">
-                                                                Realizar Pedido   <i class="material-icons">send</i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                    @if(auth()->user()->cart->details->count() > 0)
+                                                        <div class="text-right">
+                                                            <form action=" {{ url('/order') }}" method="post">
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-primary btn-round">
+                                                                    Realizar Pedido   <i class="material-icons">send</i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             @endif
                                         </div>

@@ -40,7 +40,7 @@
                                 <select class="selectpicker" data-style="btn btn-primary btn-round" title="Categorias" name="category_id">
                                     <option disabled selected>Elige Categoria</option>
                                     @foreach($category as $categor)
-                                        <option value="{{ $categor->id }}" name='category_id'>{{ $categor->name }}</option>
+                                        <option value="{{ $categor->id }}" name='category_id' @if($categor->id == old('category_id', $product->category_id)) selected @endif>{{ $categor->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
