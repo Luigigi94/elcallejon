@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Board;
-use http\Exception\InvalidArgumentException;
+use App\Models\Tills;
 use Illuminate\Http\Request;
-use function Symfony\Component\String\b;
 
 class BoardController extends Controller
 {
@@ -50,6 +50,21 @@ class BoardController extends Controller
     {
         $board = Board::find($id);
         $board->delete();
+        return back();
+    }
+
+    public function occupy(Board $board, Tills $tills)
+    {
+        $board->status = 1;
+        $tills->command_id = 1;
+        $tills->save();
+        return back();
+    }
+
+    public function setfree(Board $board)
+    {
+        $board->status = 0;
+        $board->save();
         return back();
     }
 }
