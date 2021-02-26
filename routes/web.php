@@ -40,6 +40,7 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
     Route::get('/users/{id}/edit','UserController@edit');//edit productos
     Route::post('/users/{id}/edit','UserController@update');//edit productos
     Route::delete('/users/{id}','UserController@destroy');//form eliminar
+
     //Mesas
     Route::get('/boards','BoardController@index')->name('index');
     Route::get('/boards/create','BoardController@create');
@@ -47,6 +48,10 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
     Route::get('/boards/{id}/edit','BoardController@edit');
     Route::post('/boards/{id}/edit','BoardController@update');
     Route::delete('/boards/{id}','BoardController@destroy');
+    Route::post('/boards/{board}/do','BoardController@occupy');
+    Route::post('/boards/{board}/undo','BoardController@setfree');
+
+
 
     //Ahorros
     Route::get('/savings','SavingsController@index')->name('index');
@@ -82,7 +87,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/products/{id}','ProductController@show');
-Route::get('/categories/{categor}','CategoryController@show');
+Route::get('/categories/{category}','CategoryController@show');
 Route::post('/cart','CartDetailController@store');
 Route::delete('/cart','CartDetailController@destroy');
 Route::post('/order','CartController@update');
