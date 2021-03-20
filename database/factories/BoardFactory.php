@@ -24,7 +24,7 @@ class BoardFactory extends Factory
         static $auto = 1;
         return [
             'num_board' => $auto++,
-            'place' => $this->faker->sentence(3)
+            'place' => $this->faker->sentence(3),
         ];
     }
 }

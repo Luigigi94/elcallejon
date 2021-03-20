@@ -15,7 +15,8 @@ class CreateCommandTable extends Migration
     {
         Schema::create('commands', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('quantity')->default(0);
+            $table->float('subtotal')->default(0);
             $table->timestamps();
         });
     }

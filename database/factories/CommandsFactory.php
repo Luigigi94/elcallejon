@@ -23,8 +23,8 @@ class CommandsFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => $this->faker->numberBetween(1,10),
-            'board_id' => $this->faker->numberBetween(1,10)
+//            'product_id' => $this->faker->numberBetween(1,10),
+//            'board_id' => $this->faker->numberBetween(1,10)
         ];
     }
 }

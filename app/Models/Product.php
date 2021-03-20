@@ -36,6 +36,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+//    public function commands(): HasMany
+//    {
+//        return $this->hasMany(Commands::class);
+//    }
+
     public function getFeaturedImageUrlAttribute()
     {
         $featuredImage = $this->images()->where('featured',true)->first();

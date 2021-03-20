@@ -10,7 +10,10 @@ class Board extends Model
     use HasFactory;
 
     protected $fillable = [
-        'num_board'
+        'id',
+        'num_board',
+        'place',
+        'status_id'
     ];
 
     public function usuario()

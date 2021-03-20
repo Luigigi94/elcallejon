@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\CommandsController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +48,23 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
     Route::get('/boards/{id}/edit','BoardController@edit');
     Route::post('/boards/{id}/edit','BoardController@update');
     Route::delete('/boards/{id}','BoardController@destroy');
-    Route::post('/boards/{board}/do','BoardController@occupy');
+    Route::get('/boards/{board}/do','BoardController@occupy');
     Route::post('/boards/{board}/undo','BoardController@setfree');
 
+//    Commands
+    Route::resource('command', 'CommandsController');
+//    Route::post('command/{commanda}', 'CommandsController@store')->name('command.store');
+    Route::post('/command/','CommandsController@store');
+    Route::get('/command/{id}/order','CommandsController@order')->name('command.order');
+
+//    Route::get('/command/{command}','CommandsController@show');
+    Route::get('command/{id}/dataproduct','CommandsController@dataproduct')->name('command.datap');
+    Route::post('command/update', 'CommandsController@update')->name('command.update');
+
+    Route::get('command/destroy/{id}', 'CommandsController@destroy');
+//
+
+//    Route::resource('ajaxboards','BoardAjaxController');
 
 
     //Ahorros

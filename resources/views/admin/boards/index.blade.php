@@ -1,7 +1,33 @@
 @extends('layouts.app')
 @section('body-class','pricing')
 @section('title','Mesas (Admin)')
+@section('stylesxd')
+    <style>
+        .team .row .col-md-6{
+            margin-bottom: 1em;
+        }
+        .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display:         flex;
+            flex-wrap: wrap;
+        }
+        .row > [class*='col-'] {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #elhref{
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+@endsection
 @section('content')
+
+    @include('includes.board.modaladdboard')
+{{--    @include('includes.board.modaledit')--}}
     <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{asset('/img/bg2.jpg')}}');">
         <div class="container">
             <div class="row">
@@ -16,22 +42,14 @@
         <div class="container">
             <div class="pricing-2">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
-                        <ul class="nav nav-pills nav-pills-rose" role="tablist" style="visibility: hidden">
-                            <li class="active">
-                                <a href="#dashboard-1" role="tab" data-toggle="tab">
-                                    Monthly
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#schedule-1" role="tab" data-toggle="tab">
-                                    Yearly
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="col-md-6 col-md-offset-3 text-center" id="eldiv">
+                        <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#modalAddBoard">
+                            <i class="material-icons">add</i>
+                            Agregar
+                        </button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="elrow">
                     @foreach($board as $bor)
                         @if(($bor->id)%2 )
                             <div class="col-md-6">

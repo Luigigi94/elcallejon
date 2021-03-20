@@ -128,16 +128,16 @@
                                         </div>
                                             @endif
                                         </div>
-                                    </div>
+                                                                                </div>
                                     <div class="tab-pane" id="mesa-ocupada">
                                         <div class="team">
                                             <div class="row">
-                                                @if($statboard == 0)
+                                                @if($status === 0)
                                                     <h4 class="title">No Hay Mesas Ocupadas</h4>
                                                 @else
                                                     <h4 class="title">Mesas Ocupadas</h4>
                                                     @foreach($boards as $board)
-                                                        @if($board->status > 0)
+                                                        @if($board->status_id === 2)
                                                             <div class="col-md-4">
                                                                 <div class="card card-blog">
                                                                     <div class="card-content">
@@ -148,12 +148,12 @@
                                                                             {{ $board->place }}
                                                                         </h4>
 
-                                                                        <form action="{{ url('/admin/boards/'.$board->id.'/undo') }}" method="post">
-                                                                            {{ csrf_field() }}
-                                                                            <button class="btn btn-primary btn-round">
-                                                                                <i class="material-icons">update</i>
-                                                                                <div class="ripple-container"></div></button>
-                                                                        </form>
+                                                                        <a href="{{ url('/admin/command/'.$board->id.'/order') }}" class="btn btn-primary btn-round"><i class="material-icons">visibility</i>
+                                                                            <div class="ripple-container"></div></a>
+                                                                        <a href="{{ url('/admin/command/'.$board->id) }}" class="btn btn-primary btn-round"><i class="material-icons">update</i>
+                                                                            <div class="ripple-container"></div></a>
+                                                                        <a href="{{ url('/admin/command/'.$board->id) }}" class="btn btn-primary btn-round"><i class="material-icons">price_check</i>
+                                                                            <div class="ripple-container"></div></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -168,7 +168,7 @@
                                         <div class="team">
                                             <div class="row">
                                                 @foreach($boards as $board)
-                                                    @if($board->status == 0)
+                                                    @if($board->status_id === 1)
                                                     <div class="col-md-4">
                                                         <div class="card card-blog">
                                                             <div class="card-content">
@@ -179,12 +179,8 @@
                                                                     {{ $board->place }}
                                                                 </h4>
 
-                                                                <form action="{{ url('/admin/boards/'.$board->id.'/do') }}" method="post">
-                                                                    {{ csrf_field() }}
-                                                                    <button class="btn btn-primary btn-round">
-                                                                        <i class="material-icons">update</i>
-                                                                        <div class="ripple-container"></div></button>
-                                                                </form>
+                                                                <a href="{{ url('/admin/command/'.$board->id) }}" class="btn btn-primary btn-round"><i class="material-icons">add</i>
+                                                                    <div class="ripple-container"></div></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -202,97 +198,3 @@
         </div>
     </div>
 </div>
-
-
-{{--                <div class="section text-center">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-md-8 col-md-offset-2 text-center" style="background: #1d643b; ">--}}
-{{--                            <h2 class="title">The Executive Team 2</h2>--}}
-{{--                            <h5 class="description">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</h5>--}}
-{{--                            <h2 class="title" style="visibility: hidden">The Executive Team 2</h2>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div style="visibility: hidden" class="row">--}}
-{{--                        <div class="col-md-8 col-md-offset-2 text-center">--}}
-{{--                            <h2 class="title">The Executive Team 2</h2>--}}
-{{--                            <h5 class="description">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</h5>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-md-4">--}}
-{{--                            <div class="rotating-card-container">--}}
-{{--                                <div class="card card-rotate card-background">--}}
-{{--                                    <div class="front front-background" style="background-image: url('{{asset('img/examples/card-blog5.jpg')}}');">--}}
-{{--                                        <div class="card-content">--}}
-{{--                                            <h6 class="category text-info">Tarjeta de usuarios</h6>--}}
-{{--                                            <a href="#something">--}}
-{{--                                                <h3 class="card-title">Aqui puedes revisar la informacion de los usuarios</h3>--}}
-{{--                                            </a>--}}
-{{--                                            <p class="card-description">--}}
-{{--                                                Todo lo relacionado con tus empleados lo puedes revisar al dar click en el icono de atras. Solo pasa el mouse por encima--}}
-{{--                                            </p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
-{{--                                    <div class="back back-background" style="background-image: url('{{asset('img/examples/card-blog5.jpg')}}');">--}}
-{{--                                        <div class="card-content">--}}
-{{--                                            <h5 class="card-title">--}}
-{{--                                                Administrar usuarios--}}
-{{--                                            </h5>--}}
-{{--                                            <p class="card-description">Como administrador te interesa saber quien puede tener acceso a tu aplicación, administralo desde aqui.</p>--}}
-{{--                                            <div class="footer text-center">--}}
-{{--                                                <a href="{{url('/admin/users')}}" class="btn btn-info btn-just-icon btn-fill btn-round">--}}
-{{--                                                    <i class="material-icons">account_circle</i>--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-4 col-md-offset-4">--}}
-{{--                            <div class="rotating-card-container">--}}
-{{--                                <div class="card card-rotate card-background">--}}
-{{--                                    <div class="front front-background" style="background-image: url('{{asset('img/examples/card-blog5.jpg')}}');">--}}
-{{--                                        <div class="card-content">--}}
-{{--                                            <h6 class="category text-info">Tarjeta de Restaurant</h6>--}}
-{{--                                            <a href="#pablo">--}}
-{{--                                                <h3 class="card-title">Aqui puedes revisar la informacion de tu restaurant</h3>--}}
-{{--                                            </a>--}}
-{{--                                            <p class="card-description">--}}
-{{--                                                Todo lo relacionado con tus restaurant (caja, mesas, cierres y etc. lo puedes revisar al dar click en el icono de atras. Solo pasa el mouse por encima--}}
-{{--                                            </p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
-{{--                                    <div class="back back-background" style="background-image: url('{{asset('img/examples/card-blog5.jpg')}}');">--}}
-{{--                                        <div class="card-content">--}}
-{{--                                            <h5 class="card-title">--}}
-{{--                                                Administrar Restaurant--}}
-{{--                                            </h5>--}}
-{{--                                            <p class="card-description">Como administrador te interesa saber quien puede tener acceso a tu aplicación, administralo desde aqui.</p>--}}
-{{--                                            <div class="footer">--}}
-{{--                                                <div class="row">--}}
-{{--                                                    <div class="col-4">--}}
-{{--                                                        <a href="{{ url('/admin/savings') }}" class="btn btn-info btn-just-icon btn-fill btn-round">--}}
-{{--                                                            <i class="material-icons">attach_money</i>--}}
-{{--                                                        </a>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="col-4">--}}
-{{--                                                        <a href="{{ url('/admin/boards') }}" class="btn btn-info btn-just-icon btn-fill btn-round">--}}
-{{--                                                            <i class="material-icons">coffee</i>--}}
-{{--                                                        </a>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="col-4">--}}
-{{--                                                        <a href="{{ url('/admin/till') }}" class="btn btn-info btn-just-icon btn-fill btn-round">--}}
-{{--                                                            <i class="material-icons">local_grocery_store</i>--}}
-{{--                                                        </a>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}

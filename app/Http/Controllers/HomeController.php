@@ -26,9 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $statboard = DB::select('SELECT COUNT(status) FROM boards WHERE status = 1');
+        $status = DB::table('boards')
+            ->where('status_id','=',1);
         $products = Product::all();
         $boards = Board::all();
-        return view('home')->with(compact('products','boards', 'statboard'));
+        return view('home')->with(compact('products','boards', 'status'));
     }
 }

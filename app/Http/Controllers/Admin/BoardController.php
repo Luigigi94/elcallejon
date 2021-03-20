@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Board;
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Tills;
 use Illuminate\Http\Request;
 
@@ -53,13 +55,6 @@ class BoardController extends Controller
         return back();
     }
 
-    public function occupy(Board $board, Tills $tills)
-    {
-        $board->status = 1;
-        $tills->command_id = 1;
-        $tills->save();
-        return back();
-    }
 
     public function setfree(Board $board)
     {
