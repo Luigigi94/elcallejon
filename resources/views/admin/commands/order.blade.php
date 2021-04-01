@@ -36,6 +36,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($firsttry as $ft)
+{{--                                    @dd($ft)--}}
                                 <tr>
                                     <td>
                                         <div class="img-container">
@@ -43,7 +44,7 @@
                                         </div>
                                     </td>
                                     <td class="td-name">
-                                        <a href="#jacket">{{ $ft->name }}</a>
+                                        <a href="{{ url('/products/'.$ft->id) }}">{{ $ft->name }}</a>
                                     </td>
 
                                     <td class="td-number">
@@ -57,7 +58,7 @@
                                         </div>
                                     </td>
                                     <td class="td-number">
-                                        <small>&dollar;</small> {{ $ft->quantity * $ft->price }}
+                                        <small>&dollar;</small> {{ $ft->subtotal }} <input type="hidden" id="amount" value="{{ $ft->subtotal  }}">
                                     </td>
                                     <td class="td-actions">
                                         <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-simple">
@@ -75,7 +76,7 @@
                                     <td class="td-price">
                                         <small>&dollar;</small>2,346
                                     </td>
-                                    <td colspan="0" class="text-right"> <button type="button" class="btn btn-info btn-round">Pagar Cuenta<i class="material-icons">keyboard_arrow_right</i></button></td>
+                                    <td colspan="0" class="text-right"> <a href="{{ url('/admin/commando') }}" type="button" class="btn btn-info btn-round">Pagar Cuenta<i class="material-icons">keyboard_arrow_right</i></a></td>
 
                                 </tr>
                                 </tbody>
@@ -89,4 +90,12 @@
     </div>
     @include('includes.footer')
 
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function (){
+            console.log({{$suma}})
+        })
+
+    </script>
 @endsection

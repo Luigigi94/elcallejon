@@ -56,13 +56,17 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
 //    Route::post('command/{commanda}', 'CommandsController@store')->name('command.store');
     Route::post('/command/','CommandsController@store');
     Route::get('/command/{id}/order','CommandsController@order')->name('command.order');
+    Route::post('/commando/','CommandsController@payboard')->name('command.payboard');
+
 
 //    Route::get('/command/{command}','CommandsController@show');
     Route::get('command/{id}/dataproduct','CommandsController@dataproduct')->name('command.datap');
     Route::post('command/update', 'CommandsController@update')->name('command.update');
 
     Route::get('command/destroy/{id}', 'CommandsController@destroy');
-//
+    Route::get('/{id}/pdf','CommandsController@pdf');
+
+    //
 
 //    Route::resource('ajaxboards','BoardAjaxController');
 

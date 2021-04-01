@@ -16,10 +16,10 @@
     <div class="main main-raised">
         <div class="container">
             <div style="display: flex; margin-left: auto">
-                <button class="btn btn-fab btn-primary" rel="tooltip" title="" data-original-title="Cerrar Comanda">
+                <a href="{{ url('/home') }}" class="btn btn-fab btn-primary" rel="tooltip" title="" data-original-title="Cerrar Comanda">
                     <i class="material-icons">close</i>
                     <div class="ripple-container"></div>
-                </button>
+                </a>
             </div>
             <div class="pricing-2">
                 <div class="row">
