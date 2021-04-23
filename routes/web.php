@@ -56,7 +56,10 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
 //    Route::post('command/{commanda}', 'CommandsController@store')->name('command.store');
     Route::post('/command/','CommandsController@store');
     Route::get('/command/{id}/order','CommandsController@order')->name('command.order');
-    Route::post('/commando/','CommandsController@payboard')->name('command.payboard');
+
+//    Payment
+    Route::post('/payment/{id}','PaymentController@payboard')->name('Payment.payboard');
+    Route::get('/payment/pdf/{id}','PaymentController@index')->name('Payment.index');
 
 
 //    Route::get('/command/{command}','CommandsController@show');

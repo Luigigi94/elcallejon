@@ -22,7 +22,15 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <div class="info" style="visibility: hidden">
+                    <div class="info">
+                        <div class="icon">
+                            <i class="material-icons">money</i>
+                        </div>
+                        <h4 class="info-title">Cantidad en Caja</h4>
+                        @foreach($till as $cash)
+                        <h4 class="info-title">${{$cash->total}}</h4>
+                        @endforeach
+
                     </div>
                 </div>
 

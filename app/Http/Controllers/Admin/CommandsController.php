@@ -7,6 +7,7 @@ use App\Models\Board;
 use App\Models\Category;
 use App\Models\Commands;
 use App\Models\Product;
+use App\Models\Status;
 use App\Models\Ticket;
 use App\Models\Ticket_Commands;
 use Barryvdh\DomPDF\PDF;
@@ -27,8 +28,8 @@ class CommandsController extends Controller
         $firsttry = DB::select('
 SELECT product_images.image, products.id, products.name,  products.price, commands.id, commands.quantity, commands.subtotal
 FROM products, boards, commands, product_images
-WHERE products.id = commands.product_id AND product_images.product_id = products.id AND commands.board_id = boards.id AND boards.id = '.$id.' and product_images.featured = 1 ;');
-        $suma = DB::select("SELECT * FROM commands where board_id = ".$id);
+WHERE products.id = commands.product_id AND product_images.product_id = products.id AND commands.board_id = boards.id AND boards.id = '.$id.' and product_images.featured = 1 AND commands.status_id = 3;');
+        $suma = DB::select("SELECT SUM(subtotal) AS sum FROM `commands` WHERE commands.status_id = 3 AND board_id=".$id);
         return view('admin.commands.order')->with(compact('id','firsttry','suma'));
     }
 
@@ -52,6 +53,7 @@ WHERE products.id = commands.product_id AND product_images.product_id = products
 
     public function store(Request $request)
     {
+        $status_pending = Status::find(3);
         $board = Board::find($request->commandas);
         $ticket = DB::table('tickets')
             ->where('board_id','=',$request->commandas)
@@ -76,21 +78,26 @@ WHERE products.id = commands.product_id AND product_images.product_id = products
             $board->status_id = 2;
             $board->save();
 
-            $commands = Commands::create([
-                'quantity' => $request->quantity,
-                'product_id' => $request->product_id,
-                'board_id' => $request->commandas,
-                'subtotal' => ($request->quantity * $request->price)
-            ]);
+            $commands = new Commands();
+            $commands->quantity = $request->quantity;
+            $commands->product_id = $request->product_id;
+            $commands->board_id = $request->commandas;
+            $commands->subtotal = ($request->quantity * $request->price);
+            $commands->status_id = 3;
+            $commands->save();
+
         }elseif ($board->status_id === 2 && $ticket[0]->status_id === 3){
-            $commands = Commands::create([
-                'quantity' => $request->quantity,
-                'product_id' => $request->product_id,
-                'board_id' => $request->commandas,
-                'subtotal' => ($request->quantity * $request->price)
-            ]);
-//            @dd($commands->price);
+
+            $commands = new Commands();
+            $commands->quantity = $request->quantity;
+            $commands->product_id = $request->product_id;
+            $commands->board_id = $request->commandas;
+            $commands->subtotal = ($request->quantity * $request->price);
+            $commands->status_id = 3;
+            $commands->save();
         }
+
+//        $updating = DB::select('UPDATE commands SET status_id = 3 WHERE board_id = '.$request->commandas.' AND status_id is NULL ');
 
         return back();
     }
@@ -102,13 +109,6 @@ WHERE products.id = commands.product_id AND product_images.product_id = products
             return response()->json(['data' => $data]);
         }
     }
-
-    public function payboard($id)
-    {
-        $board = Board::find($id);
-        dd($board);
-    }
-
 
     public function pdf($id)
     {

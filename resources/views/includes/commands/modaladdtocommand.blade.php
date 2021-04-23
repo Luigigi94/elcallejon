@@ -30,35 +30,5 @@
         </div>
     </div>
 </div>
-{{--<div id="formModal" class="modal fade" role="dialog">--}}
-{{--    <div class="modal-dialog">--}}
-{{--        <div class="modal-content">--}}
-{{--            <div class="modalheader">--}}
-{{--                <button class="close" data-dismiss="modal" type="button">&times;</button>--}}
-{{--                <h4 class="modal-title" id="labelcambia"></h4>--}}
-{{--            </div>--}}
-{{--            <div class="modal-body">--}}
-{{--                <span id="form_result"></span>--}}
-{{--                <form method="post" id="sample_form" class="form-horizontal" enctype="multipart/form-data">--}}
-{{--                    {{ csrf_field() }}--}}
-{{--                    <div class="form-group">--}}
-{{--                        <input type="text" id="nombreprod">--}}
-{{--                        <label for="quantity" class="control-label col-md-4">Quantity:</label>--}}
-{{--                        <div class="col-md-8">--}}
-{{--                            <input type="number" id="quantity" name="quantity" class="form-control">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group">--}}
-{{--                        <input type="text" disabled name="commandas" id="commandas" value="boardid {{ $commandas }}">--}}
-{{--                        <input type="text" disabled name="user_id" id="user_id" value="userid {{ auth()->user()->id }}">--}}
-{{--                        <input type="text" disabled name="action" id="action" value="action">--}}
-{{--                        <input type="text" disabled name="hidden_id" id="hidden_id" value="hiddenid">--}}
-{{--                        <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="ADD">--}}
-{{--                        <button type="submit"></button>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+
 

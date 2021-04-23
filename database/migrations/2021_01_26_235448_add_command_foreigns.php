@@ -20,6 +20,8 @@ class AddCommandForeigns extends Migration
 
             $table->unsignedBigInteger('board_id')->nullable()->unsigned();
             $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
+
+
         });
 
     }

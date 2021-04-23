@@ -52,15 +52,18 @@
                                     </td>
                                     <td class="td-number">
                                         {{ $ft->quantity }}
-                                        <div class="btn-group">
+                                        {{--<div class="btn-group">
                                             <button class="btn btn-round btn-info btn-xs"> <i class="material-icons">remove</i> </button>
                                             <button class="btn btn-round btn-info btn-xs"> <i class="material-icons">add</i> </button>
-                                        </div>
+                                        </div>--}}
                                     </td>
                                     <td class="td-number">
                                         <small>&dollar;</small> {{ $ft->subtotal }} <input type="hidden" id="amount" value="{{ $ft->subtotal  }}">
                                     </td>
                                     <td class="td-actions">
+                                        <button type="button" rel="tooltip" data-placement="left" title="Edit item" class="btn btn-simple">
+                                            <i class="material-icons">edit</i>
+                                        </button>
                                         <button type="button" rel="tooltip" data-placement="left" title="Remove item" class="btn btn-simple">
                                             <i class="material-icons">close</i>
                                         </button>
@@ -68,15 +71,22 @@
                                 </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="0">
-                                    </td>
+                                    <td colspan="0" class="text-right"> <a href="{{ url('/home') }}" type="button" class="btn btn-info btn-round"><i class="material-icons">keyboard_arrow_left</i>Regresar</a></td>
+
                                     <td class="td-total">
                                         Total
                                     </td>
                                     <td class="td-price">
-                                        <small>&dollar;</small>2,346
+                                        <small>&dollar;</small> @foreach($suma as $sum){{$sum->sum}} @endforeach
                                     </td>
-                                    <td colspan="0" class="text-right"> <a href="{{ url('/admin/commando') }}" type="button" class="btn btn-info btn-round">Pagar Cuenta<i class="material-icons">keyboard_arrow_right</i></a></td>
+                                    <td colspan="0" class="text-right">
+
+                                        <button class="btn btn-info btn-round" data-toggle="modal" data-target="#modalpay">
+                                            Pagar Cuenta
+                                            <i class="material-icons">keyboard_arrow_right</i>
+
+                                        </button>
+                                    </td>
 
                                 </tr>
                                 </tbody>
@@ -89,12 +99,12 @@
         </div>
     </div>
     @include('includes.footer')
-
+    @include('includes.commands.modalpagar')
 @endsection
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function (){
-            console.log({{$suma}})
+
         })
 
     </script>

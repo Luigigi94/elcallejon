@@ -15,7 +15,6 @@ class CreateTillForeigns extends Migration
     {
         Schema::table('tills', function (Blueprint $table) {
 //            foraneas
-            $table->integer('command_id')->nullable()->unsigned();
             $table->integer('user_id')->nullable()->unsigned();
 
 //            $table->foreignId('command_id')->constrained('commands')->onDelete('cascade');
