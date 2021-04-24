@@ -15,6 +15,16 @@ class PaymentController extends Controller
 {
     public function payboard($id, Request $request)
     {
+        $total_cash = DB::table('tills')
+            ->select('total')
+            ->orderBy('id','desc')
+            ->first();
+
+        $updateCash = ($total_cash->total)+($request->total);
+        Tills::create([
+            'total' => $updateCash,
+            'user_id' => auth()->id(),
+        ]);
         $command_to_payed = DB::table('commands')
             ->where('status_id','=','3')
             ->update(['status_id' => 4]);
@@ -29,19 +39,6 @@ class PaymentController extends Controller
             ->update(['status_id' => 4,
                 'total' => $request->total]);
 
-//        $update_command_to_pay = DB::select('UPDATE commands SET status_id = 4 WHERE board_id = 1 AND status_id = 3');
-//        $update_board_to_free = DB::select('UPDATE boards SET status_id = 1 WHERE status_id = 2');
-//        $update_ticket_to_payed = DB::select('UPDATE tickets SET status_id = 4, total = '.$request->total.' WHERE board_id = '.$request->lamesa.' AND status_id = 3 AND total = 0.00');
-        $recent_ticket = Ticket::latest('status_id')->first();
-        $total_cash = Tills::all();
-        if($recent_ticket === 4){
-            $updateCash = $total_cash[1]-$request->total;
-
-            $ticket = Ticket::create([
-                'total' => $updateCash,
-                'user_id' => auth()->id(),
-            ]);
-        }
         return redirect('/admin/payment/pdf/'.$id);
     }
 

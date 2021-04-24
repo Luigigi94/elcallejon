@@ -41,15 +41,22 @@
 {{--                                $resultado = $condicion ? 'verdadero' : 'falso';--}}
                                 <td>@if(($user->admin) == 1)admin @else Empleado @endif </td>
                                 <td class="td-actions text-right">
+                                    <button class="btn btn-info" rel="tooltip" data-placement="left" title="Ver" data-toggle="modal" data-target="#view_user">
+                                        <i class="material-icons">person</i>
+                                    </button>
+                                    <button class="btn btn-info" rel="tooltip" data-placement="left" title="Editar" data-toggle="modal" data-target="#view_user">
+                                        <i class="material-icons">edit</i>
+                                    </button>
                                     <form action="{{ url('/admin/users/'.$user->id) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <a href="#something" type="button" rel="tooltip" class="btn btn-info" data-placement="left" title="Ver">
+
+                                        {{--<a href="#something" type="button" rel="tooltip" class="btn btn-info" data-placement="left" title="Ver">
                                             <i class="material-icons">person</i>
-                                        </a>
-                                        <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" type="button" rel="tooltip" class="btn btn-success" data-placement="left" title="Editar">
+                                        </a>--}}
+                                        {{--<a href="{{ url('/admin/users/'.$user->id.'/edit') }}" type="button" rel="tooltip" class="btn btn-success" data-placement="left" title="Editar">
                                             <i class="material-icons">edit</i>
-                                        </a>
+                                        </a>--}}
                                         <button type="submit" rel="tooltip" class="btn btn-danger" data-placement="left" title="Eliminar">
                                             <i class="material-icons">close</i>
                                         </button>
@@ -64,4 +71,5 @@
         </div>
     </div>
 @include('includes.footer')
+@include('includes.users.modal_view_user')
 @endsection

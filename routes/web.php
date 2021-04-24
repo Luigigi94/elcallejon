@@ -71,7 +71,6 @@ Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(functio
 
     //
 
-//    Route::resource('ajaxboards','BoardAjaxController');
 
 
     //Ahorros

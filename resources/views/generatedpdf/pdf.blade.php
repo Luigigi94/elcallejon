@@ -26,7 +26,11 @@
     <h4>Orden:</h4>
 @foreach($firsttry as $result)
     {{ $result->name }}..... {{ $result->quantity }} <br>
+
+    worales
 @endforeach
+
+    <a href="{{url('/home')}}">link</a>
 </div>
 </body>
 </html>

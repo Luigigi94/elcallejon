@@ -14,10 +14,15 @@
                 <div class="col-sm-4">
                     <div class="info">
                         <div class="icon">
-                            <i class="material-icons">code</i>
+                            <i class="material-icons">trending_up</i>
                         </div>
-                        <h4 class="info-title">For Developers</h4>
-                        <p>The moment you use Material Kit, you know you’ve never felt anything like it. With a single use, this powerfull UI Kit lets you do more than ever before. </p>
+                        <h4 class="info-title">Dejar en Caja</h4>
+                        <div>
+                            <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#add_to_till">
+                                <i class="material-icons">info_outline</i>
+                                Dejar en Caja
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -26,10 +31,13 @@
                         <div class="icon">
                             <i class="material-icons">money</i>
                         </div>
-                        <h4 class="info-title">Cantidad en Caja</h4>
-                        @foreach($till as $cash)
+                        <h4 class="info-title">Cantidad en Caja <br>
+                            {{$till->total}}
+                        </h4>
+{{--                        @dd($till->total)--}}
+                        {{--@foreach($till as $cash)
                         <h4 class="info-title">${{$cash->total}}</h4>
-                        @endforeach
+                        @endforeach--}}
 
                     </div>
                 </div>
@@ -49,6 +57,7 @@
         </div>
     </div>
 
+    @include('includes.Tills.modal_add_to_till')
     @include('includes.footer')
 @endsection
 

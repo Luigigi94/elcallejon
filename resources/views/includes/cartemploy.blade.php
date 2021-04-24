@@ -32,18 +32,18 @@
                                     <!--
                                         color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
                                     -->
-                                    <li>
+                                    <li class="active">
                                         <a href="#mesa-libre" role="tab" data-toggle="tab"><i class="material-icons">local_cafe</i>Mesas Libres</a>
                                     </li>
-                                    <li class="active">
+                                    {{--<li class="active">
                                         <a href="#dashboard-2" role="tab" data-toggle="tab">
                                             <i class="material-icons">dashboard</i>
                                             Carrito
                                         </a>
-                                    </li>
+                                    </li>--}}
                                     <li >
                                         <a href="#mesa-ocupada" role="tab" data-toggle="tab">
-                                            <i class="material-icons">schedule</i>
+                                            <i class="material-icons">block</i>
                                             Schedule
                                         </a>
                                     </li>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="dashboard-2">
+                                    {{--<div class="tab-pane active" id="dashboard-2">
                                         <div class="table-full-width">
                                         @if(auth()->user()->cart->details->count() < 1)
                                             <div id="typography" class="cd-section">
@@ -82,7 +82,7 @@
                                                         </td>
                                                         <td>
                                                             <a href="{{ url('/products/'.$detail->product->id) }}">{{ $detail->product->name }}</a>
-                                                            {{--                                                                            <br /><small>by Dolce&Gabbana</small>--}}
+                                                                                                                                        <br /><small>by Dolce&Gabbana</small>
                                                         </td>
                                                         <td class="td-number">
                                                             <small>&euro;</small>{{ $detail->product->price }}
@@ -128,7 +128,7 @@
                                         </div>
                                             @endif
                                         </div>
-                                                                                </div>
+                                                                                </div>--}}
                                     <div class="tab-pane" id="mesa-ocupada">
                                         <div class="team">
                                             <div class="row">
@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="mesa-libre">
+                                    <div class="tab-pane active" id="mesa-libre">
                                         <h4 class="title">Mesas Libres</h4>
                                         <div class="team">
                                             <div class="row">
