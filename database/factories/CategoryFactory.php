@@ -23,11 +23,7 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'name' => ucfirst($this->faker->word),
-            'description' => $this->faker->sentence(10),
-            'image' => $this->faker->imageUrl(255, 255)
-        ];
+
     }
 
 }

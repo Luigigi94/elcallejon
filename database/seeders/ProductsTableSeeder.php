@@ -21,12 +21,6 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-            ->count(5)
-            ->create();
-        Product::factory()
-            ->count(10)
-            ->create();
         ProductImage::factory()
             ->count(20)
             ->create();

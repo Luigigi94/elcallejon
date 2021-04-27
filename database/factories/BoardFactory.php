@@ -25,6 +25,7 @@ class BoardFactory extends Factory
         return [
             'num_board' => $auto++,
             'place' => $this->faker->sentence(3),
+            'status_id' => $this->faker->numberBetween($min=1,$max=1)
         ];
     }
 }

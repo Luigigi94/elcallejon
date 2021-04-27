@@ -69,7 +69,7 @@
                 </div>
                 <div class="text-center">
                     @if($products->count() > 9)
-                        {{ $products->links() }}
+{{--                        {{ $products->links() }}--}}
                     @endif
                 </div>
             </div>
