@@ -44,18 +44,20 @@
         <div class="main main-raised">
             <div class="container">
                 <div class="pricing-2">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="nav nav-pills nav-pills-rose nav-align-center" role="tablist">
-                                <li class="active">
-                                    <a href="{{ url('/admin/categories/create') }}">
-                                        <i class="material-icons">add</i>
-                                        Crear nueva Categoria
-                                    </a>
-                                </li>
-                            </ul>
+                    @if(auth()->user()->admin===1)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="nav nav-pills nav-pills-rose nav-align-center" role="tablist">
+                                    <li class="active">
+                                        <a href="{{ url('/admin/categories/create') }}">
+                                            <i class="material-icons">add</i>
+                                            Crear nueva Categoria
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="row">
                         @foreach($categories as $key => $category)
 {{--                            @dd($product)--}}
@@ -69,6 +71,7 @@
                                                 <li><b>{{ $category->description }}</b></li>
                                                 <li><b>{{ $category->priceprod }}</b></li>
                                             </ul>
+                                            @if(auth()->user()->admin===1)
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <a href='{{ url('/admin/categories/'.$category->id.'/edit') }}' class="btn btn-white btn-raised btn-round">
@@ -85,6 +88,16 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <button class="btn btn-white btn-raised btn-round" data-toggle="modal" data-target="#modalvercategory">
+                                                            <i class="material-icons">visibility</i>
+                                                            Ver Categoria
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -99,6 +112,7 @@
                                                 <li><b>{{ $category->description }}</b></li>
                                                 <li><b>{{ $category->priceprod }}</b></li>
                                             </ul>
+                                            @if(auth()->user()->admin===1)
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <a href='{{ url('/admin/categories/'.$category->id.'/edit') }}' class="btn btn-rose btn-raised btn-round">
@@ -115,6 +129,17 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <button class="btn btn-rose btn-raised btn-round" data-toggle="modal" data-target="#modalvercategory">
+                                                            <i class="material-icons">visibility</i>
+                                                            Ver Categoria
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
@@ -127,5 +152,6 @@
             </div>
         </div>
 @include('includes.footer')
+@include('includes.modalvercategory')
 @endsection
 

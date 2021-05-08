@@ -53,7 +53,7 @@
                     @foreach($products as $product)
                         <div class="col-md-4">
                             <div class="card card-blog">
-                                <div class="card-image">
+                                <div {{--class="card-image"--}}>
                                     <a href="{{ url('/products/'.$product->id) }}">
                                         <img class="img" src="{{ $product->featured_image_url }}" />
                                     </a>

@@ -45,7 +45,7 @@ WHERE products.id = commands.product_id AND product_images.product_id = products
         $products = Product::all();
         $categories = Category::all();
         if (\request()->ajax()){
-            return view('admin.boards.useboard')->with( compact('commandas','products','categories','commands'));
+//            return view('admin.boards.useboard')->with( compact('commandas','products','categories','commands'));
 
         }
         return view('admin.boards.useboard')->with( compact('commandas','products','categories','commands'));

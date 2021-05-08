@@ -10,10 +10,28 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    /*public function index(Product  $product)
     {
         $products = Product::paginate(6);
         return view('admin.products.index')->with(compact('products'));
+    }*/
+
+    public function index(Request $request)
+    {
+        $products = Product::all();
+        $categories = Category::all();
+        if (\request()->ajax())
+            return view('admin.products.index')->with(compact('products','categories'));
+
+        return view('admin.products.index')->with(compact('products','categories'));
+    }
+
+    public function dataproducts($id)
+    {
+        if (\request()->ajax()){
+            $data = Product::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
     }
 
     public function create()

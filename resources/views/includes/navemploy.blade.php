@@ -26,7 +26,7 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">account_box</i>                             {{ Auth::user()->name }}
+                        <i class="material-icons">account_box</i>{{ Auth::user()->name }}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-with-icons">

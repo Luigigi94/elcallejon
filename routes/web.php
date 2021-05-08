@@ -18,12 +18,13 @@ Route::get('/','TestController@index');
 
 Route::middleware(['admin'])->prefix('admin')->namespace('Admin')->group(function () {
     //Productos
-    Route::get('/products', 'ProductController@index')->name('index');//listado
-    Route::get('/products/create','ProductController@create');//crear productos
-    Route::post('/products/','ProductController@store');//guardar productos
-    Route::get('/products/{product}/edit','ProductController@edit');//edit productos
-    Route::post('/products/{product}/edit','ProductController@update');//edit productos
-    Route::delete('/products/{product}','ProductController@destroy');//form eliminar
+//    Route::get('/products', 'ProductController@index')->name('index');//listado
+    Route::resource('products','ProductController');
+//    Route::get('/products/create','ProductController@create');//crear productos
+//    Route::post('/products/','ProductController@store');//guardar productos
+//    Route::get('/products/{product}/edit','ProductController@edit');//edit productos
+//    Route::post('/products/{product}/edit','ProductController@update');//edit productos
+//    Route::delete('/products/{product}','ProductController@destroy');//form eliminar
 
     //Categorias
     Route::get('/categories', 'CategoryController@index')->name('index');//listado

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-                <h1 class="title">Bienvenido {{ Auth::user()->name }}!</h1>
+                <h1 class="title">Bienvenido {{ Auth::user()->name }} este es tu listado de mesas</h1>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                                         color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
                                     -->
                                     <li class="active">
-                                        <a href="#mesa-libre" role="tab" data-toggle="tab"><i class="material-icons">local_cafe</i>Mesas Libres</a>
+                                        <a href="#mesa-libre" role="tab" data-toggle="tab"><i class="material-icons">local_cafe</i>Libres</a>
                                     </li>
                                     {{--<li class="active">
                                         <a href="#dashboard-2" role="tab" data-toggle="tab">
@@ -44,7 +44,7 @@
                                     <li >
                                         <a href="#mesa-ocupada" role="tab" data-toggle="tab">
                                             <i class="material-icons">block</i>
-                                            Schedule
+                                            Ocupadas
                                         </a>
                                     </li>
                                 </ul>

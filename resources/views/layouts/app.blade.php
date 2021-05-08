@@ -40,7 +40,7 @@
 <body class="@yield('body-class')">
 
 @if(auth()->user())
-    @if(auth()->user()->admin == 2)
+    @if(auth()->user())
         @include('includes.navemploy')
     @endif
 @else
